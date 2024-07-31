@@ -43,21 +43,33 @@ export class UsuarioComponent {
 @Component({
   selector: 'profile-modal-dialog',
   template: `
-    <h1 mat-dialog-title>Perfil del Usuario</h1>
+    <h1 mat-dialog-title>Información del Usuario</h1>
     <div mat-dialog-content>
-      <p><strong>ID:</strong> {{data.id}}</p>
-      <p><strong>Email:</strong> {{data.email}}</p>
-      <p><strong>Password:</strong> {{data.password}}</p>
-      <p><strong>Nombre:</strong> {{data.name}}</p>
-      <p><strong>Avatar:</strong></p>
-      <img [src]="data.avatar" alt="Avatar" width="100">
-      <p><strong>Creado en:</strong> {{data.creationAt}}</p>
-      <p><strong>Actualizado en:</strong> {{data.updateAt}}</p>
+      <div class="profile-modal-content">
+        <img [src]="data.avatar" alt="Avatar" class="profile-avatar">
+        <p><strong>ID:</strong> {{data.id}}</p>
+        <p><strong>Correo:</strong> {{data.email}}</p>
+        <p><strong>Nombre:</strong> {{data.name}}</p>
+        <p><strong>Rol:</strong> {{data.role}}</p>
+        <p><strong>Creado el:</strong> {{data.creationAt}}</p>
+        <p><strong>Editado el:</strong> {{data.updateAt}}</p>
+      </div>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Cerrar</button>
     </div>
-  `
+  `,
+  styles: [`
+    .profile-modal-content {
+      text-align: center;
+    }
+    .profile-avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+  `]
 })
 export class ProfileModalDialog {
   constructor(

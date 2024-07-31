@@ -34,3 +34,14 @@
 button {
   width: 100%;
 }
+
+.profile-modal-content {
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}

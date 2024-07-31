@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { EditProductComponent } from '../edit-product/edit-product.component';
+import Swal from 'sweetalert2';
 
 interface Product {
   id: number;
@@ -37,7 +38,6 @@ export class ProductListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Actualiza el producto con los nuevos datos
         const index = this.products.findIndex(p => p.id === product.id);
         if (index !== -1) {
           this.products[index] = result;
@@ -47,9 +47,22 @@ export class ProductListComponent implements OnInit {
   }
 
   confirmDelete(productId: number): void {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este producto?')) {
-      this.deleteProduct(productId);
-    }
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Una vez eliminado, no podrás recuperar este producto.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'No, cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteProduct(productId);
+        Swal.fire('¡Eliminado!', 'El producto ha sido eliminado.', 'success');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Cancelado', 'El producto está a salvo :)', 'error');
+      }
+    });
   }
 
   deleteProduct(productId: number): void {

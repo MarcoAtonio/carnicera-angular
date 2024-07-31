@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { UserEditComponent } from '../user-edit/user-edit.component';
+import Swal from 'sweetalert2';
 
 interface User {
   id: number;
   name: string;
   email: string;
   role: string;
+  avatar: string; 
   creationAt: string;
   updateAt: string;
 }
@@ -18,10 +20,10 @@ interface User {
 })
 export class UserListComponent implements OnInit {
   users: User[] = [
-    { id: 1, name: 'User One', email: 'userone@example.com', role: 'Admin', creationAt: '2024-01-01', updateAt: '2024-07-30' },
-    { id: 2, name: 'User Two', email: 'usertwo@example.com', role: 'User', creationAt: '2024-01-01', updateAt: '2024-07-30' }
+    { id: 1, name: 'User One', email: 'userone@example.com', role: 'Admin', avatar: 'https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png', creationAt: '2024-01-01', updateAt: '2024-07-30' },
+    { id: 2, name: 'User Two', email: 'usertwo@example.com', role: 'User', avatar: 'https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png', creationAt: '2024-01-01', updateAt: '2024-07-30' }
   ];
-  displayedColumns: string[] = ['id', 'name', 'email', 'role', 'creationAt', 'updateAt', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'email', 'role', 'avatar', 'creationAt', 'updateAt', 'actions'];
 
   constructor(private dialog: MatDialog) {}
 
@@ -44,9 +46,22 @@ export class UserListComponent implements OnInit {
   }
 
   confirmDelete(userId: number): void {
-    if (window.confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
-      this.deleteUser(userId);
-    }
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Una vez eliminado, no podrás recuperar este usuario.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'No, cancelar',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteUser(userId);
+        Swal.fire('¡Eliminado!', 'El usuario ha sido eliminado.', 'success');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire('Cancelado', 'El usuario está a salvo :)', 'error');
+      }
+    });
   }
 
   deleteUser(userId: number): void {

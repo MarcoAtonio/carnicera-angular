@@ -3,23 +3,29 @@
     <h2>Agregar Producto</h2>
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Nombre</mat-label>
-      <input matInput formControlName="name">
+      <input matInput formControlName="name" (keypress)="restrictInput($event, '^[a-zA-Z\\s]*$')">
       <mat-error *ngIf="addProductForm.get('name')?.hasError('required')">
         El nombre es requerido
+      </mat-error>
+      <mat-error *ngIf="addProductForm.get('name')?.hasError('pattern')">
+        El nombre solo puede contener letras
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Descripción</mat-label>
-      <input matInput formControlName="description">
+      <input matInput formControlName="description" (keypress)="restrictInput($event, '^[a-zA-Z\\s]*$')">
       <mat-error *ngIf="addProductForm.get('description')?.hasError('required')">
         La descripción es requerida
+      </mat-error>
+      <mat-error *ngIf="addProductForm.get('description')?.hasError('pattern')">
+        La descripción solo puede contener letras
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Precio</mat-label>
-      <input matInput formControlName="price">
+      <input matInput formControlName="price" (keypress)="restrictInput($event, '^[0-9.]*$')">
       <mat-error *ngIf="addProductForm.get('price')?.hasError('required')">
         El precio es requerido
       </mat-error>
@@ -30,20 +36,26 @@
 
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Categoría</mat-label>
-      <input matInput formControlName="category">
+      <input matInput formControlName="category" (keypress)="restrictInput($event, '^[a-zA-Z\\s]*$')">
       <mat-error *ngIf="addProductForm.get('category')?.hasError('required')">
         La categoría es requerida
+      </mat-error>
+      <mat-error *ngIf="addProductForm.get('category')?.hasError('pattern')">
+        La categoría solo puede contener letras
       </mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Imagen</mat-label>
-      <input matInput formControlName="image">
+      <input matInput formControlName="image" (keypress)="restrictInput($event, '^[a-zA-Z0-9/:.]*$')">
       <mat-error *ngIf="addProductForm.get('image')?.hasError('required')">
         La URL de la imagen es requerida
       </mat-error>
+      <mat-error *ngIf="addProductForm.get('image')?.hasError('pattern')">
+        Por favor ingrese una URL válida
+      </mat-error>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit">Agregar Producto</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="addProductForm.invalid">Agregar Producto</button>
   </form>
 </div>
