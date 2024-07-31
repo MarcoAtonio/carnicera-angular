@@ -1,0 +1,72 @@
+<div class="dashboard-container">
+  <aside class="sidebar" [class.collapsed]="!menuVisible">
+    <button mat-icon-button class="menu-toggle" (click)="toggleMenu()">
+      <mat-icon>{{ menuVisible ? 'menu_open' : 'menu' }}</mat-icon>
+    </button>
+    <div class="top-section">
+      <div class="logo">
+        <img src="https://previews.123rf.com/images/patrimonio/patrimonio1605/patrimonio160500254/57153314-ilustraci%C3%B3n-de-un-cerdo-carnicero-se-inclina-frente-al-frente-fij%C3%B3-el-c%C3%ADrculo-interior-en-el-fondo.jpg" alt="Logo">
+        <h1 *ngIf="menuVisible">CARNICERIA "LA FAMILIA"</h1>
+      </div>
+    </div>
+    <div class="search-section" *ngIf="menuVisible">
+      <mat-form-field appearance="outline">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput placeholder="Buscar">
+      </mat-form-field>
+    </div>
+    <nav class="menu">
+      <mat-accordion class="accordion">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>person</mat-icon>
+              <span *ngIf="menuVisible">Usuarios</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="submenu" *ngIf="menuVisible">
+            <button mat-button class="menu-item" routerLink="usuarios/listado">
+              <mat-icon>list</mat-icon>
+              <span *ngIf="menuVisible">Listado</span>
+            </button>
+            <button mat-button class="menu-item" routerLink="usuarios/agregar">
+              <mat-icon>add</mat-icon>
+              <span *ngIf="menuVisible">Agregar Usuario</span>
+            </button>
+          </div>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>inventory</mat-icon>
+              <span *ngIf="menuVisible">Productos</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div class="submenu" *ngIf="menuVisible">
+            <button mat-button class="menu-item" routerLink="productos/listado">
+              <mat-icon>list</mat-icon>
+              <span *ngIf="menuVisible">Listado</span>
+            </button>
+            <button mat-button class="menu-item" routerLink="productos/agregar">
+              <mat-icon>add</mat-icon>
+              <span *ngIf="menuVisible">Agregar Producto</span>
+            </button>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </nav>
+  </aside>
+  <div class="main-content">
+    <header class="top-menu">
+      <div class="profile-menu" [matMenuTriggerFor]="profileMenu">
+        <img src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png" class="profile-image" alt="Profile Image">
+        <span class="profile-name">Perfil</span>
+      </div>
+      <button mat-button (click)="logout()">Cerrar Sesión</button>
+    </header>
+    <mat-menu #profileMenu="matMenu">
+      <button mat-menu-item (click)="openProfileModal()">Ver Perfil</button>
+    </mat-menu>
+    <router-outlet></router-outlet>
+  </div>
+</div>

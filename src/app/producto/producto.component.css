@@ -1,0 +1,36 @@
+.product-add-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url('https://www.shutterstock.com/image-vector/butcher-shop-seamless-pattern-barbecue-600nw-2449835371.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.product-add-form {
+  background: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px; /* Ajusta el tamaño máximo del formulario */
+  width: 100%;
+}
+
+.product-add-form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.form-field {
+  width: 100%;
+}
+
+button {
+  width: 100%;
+}

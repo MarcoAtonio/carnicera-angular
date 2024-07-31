@@ -1,0 +1,171 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  font-family: 'Roboto', sans-serif;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #ffffff;
+  color: #3c4858;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s;
+  position: relative;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+.top-section {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  text-align: center;
+  margin-top: 40px; /* Añade un margen superior para bajar el título */
+}
+
+.logo img {
+  width: 60px; /* Aumenta el tamaño del logo */
+  margin-right: 10px;
+}
+
+.logo h1 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.search-section {
+  width: 100%;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+.mat-form-field {
+  width: calc(100% - 40px);
+  margin-left: 20px;
+}
+
+.menu {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.accordion {
+  width: 100%;
+}
+
+.menu-item,
+.submenu-item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  transition: background 0.3s, color 0.3s;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  justify-content: flex-start;
+}
+
+.menu-item:hover,
+.submenu-item:hover,
+.mat-expansion-panel-header:hover {
+  background-color: #e3f2fd;
+  color: #007bff;
+}
+
+.menu-item.active,
+.submenu-item.active,
+.mat-expansion-panel-header.mat-expanded {
+  background-color: #007bff;
+  color: white;
+}
+
+.menu-item mat-icon,
+.submenu-item mat-icon,
+.mat-expansion-panel-header mat-icon {
+  margin-right: 15px;
+}
+
+.mat-expansion-panel-header {
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.mat-expansion-panel-header:hover {
+  background-color: #e3f2fd;
+  color: #007bff;
+}
+
+.mat-panel-title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.main-content {
+  flex: 1;
+  background: url('https://www.shutterstock.com/image-vector/butcher-shop-seamless-pattern-barbecue-600nw-2449835371.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+.top-menu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  background-color: #416385;
+  color: #ecf0f1;
+}
+
+.top-menu button {
+  background: none;
+  border: none;
+  color: #ecf0f1;
+  cursor: pointer;
+}
+
+.profile-menu {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-name {
+  cursor: pointer;
+}
+
+.content {
+  padding: 20px;
+}
+
+.menu-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
