@@ -26,7 +26,7 @@ export class ProductListComponent implements OnInit {
   products: Product[] = [];
   displayedColumns: string[] = ['id', 'nombre', 'descripcion', 'precio', 'categoria','proveedor', 'imagen', 'created_at', 'updated_at', 'acciones'];
   pagedProducts: Product[] = [];
-  pageSize = 2;
+  pageSize = 4;
   currentPage = 0;
 
   constructor(private dialog: MatDialog, private http: HttpClient) {}

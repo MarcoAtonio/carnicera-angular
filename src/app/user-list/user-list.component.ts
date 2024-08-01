@@ -11,7 +11,7 @@ interface User {
   correo: string;
   contra: string;
   rol: string;
-  imagen: string; 
+  imagen: string;
   created_at: Date;
   updated_at: Date;
 }
@@ -25,13 +25,15 @@ export class UserListComponent implements OnInit {
   users: User[] = [];
   displayedColumns: string[] = ['id', 'nombre', 'correo', 'rol', 'imagen', 'created_at', 'updated_at', 'acciones'];
   pagedUsers: User[] = [];
-  pageSize = 2;
+  pageSize = 3;
   currentPage = 0;
+  currentUser: any;
 
-  constructor(private dialog: MatDialog, private http: HttpClient) {}
+  constructor(private dialog: MatDialog, private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loadUsersFromApi();
+    this.getCurrentUser();
   }
 
   loadUsersFromApi(): void {
@@ -44,6 +46,15 @@ export class UserListComponent implements OnInit {
         Swal.fire('Error', 'Hubo un problema al cargar los usuarios', 'error');
       }
     );
+  }
+
+  getCurrentUser(): void {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      this.currentUser = JSON.parse(storedUser);
+    } else {
+      Swal.fire('Error', 'No has iniciado sesión', 'error');
+    }
   }
 
   paginateUsers(): void {
@@ -68,7 +79,7 @@ export class UserListComponent implements OnInit {
       console.log('Datos del formulario de edición:', result); // Agregar consola de depuración
       if (result) {
         result.id = user.id; // Asegurarse de que el ID del usuario está presente
-        console.log('Datos a enviar al servidor:', result); 
+        console.log('Datos a enviar al servidor:', result);
         this.updateUser(result);
       }
     });
@@ -82,7 +93,7 @@ export class UserListComponent implements OnInit {
       .set('rol', user.rol)
       .set('imagen', user.imagen)
       .set('contra', user.contra); // Asegúrate de que este campo existe y tiene el valor correcto
-  
+
     this.http.put<User>(`http://127.0.0.1:8000/api/usuarios/${user.id}`, body.toString(), { headers }).subscribe(
       updatedUser => {
         const index = this.users.findIndex(u => u.id === updatedUser.id);
@@ -100,6 +111,11 @@ export class UserListComponent implements OnInit {
   }
 
   confirmDelete(userId: number): void {
+    if (this.currentUser && this.currentUser.id === userId) {
+      Swal.fire('Error', 'No puedes eliminar tu propio usuario', 'error');
+      return;
+    }
+
     Swal.fire({
       title: '¿Estás seguro?',
       text: 'Una vez eliminado, no podrás recuperar este usuario.',

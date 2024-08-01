@@ -1,5 +1,5 @@
 <div class="product-list-container">
-  <h2>Listar Productos</h2>
+  <h2>Lista Productos</h2>
   <table mat-table [dataSource]="pagedProducts" class="mat-elevation-z8">
     <!-- ID Column -->
     <ng-container matColumnDef="id">
@@ -76,7 +76,7 @@
 
   <mat-paginator [length]="products.length"
                  [pageSize]="pageSize"
-                 [pageSizeOptions]="[2, 4, 6]"
+                 [pageSizeOptions]="[4, 6, 8]"
                  [showFirstLastButtons]="true"
                  (page)="onPageChange($event)">
   </mat-paginator>

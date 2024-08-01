@@ -71,4 +71,8 @@ export class UserAddComponent {
     }
     return true;
   }
+
+  onNoClick(): void {
+    this.router.navigate(['/dashboard/usuarios/listado']);
+  }
 }

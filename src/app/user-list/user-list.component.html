@@ -1,5 +1,5 @@
 <div class="user-list-container">
-  <h2>Listar Usuarios</h2>
+  <h2>Lista Usuarios</h2>
   <table mat-table [dataSource]="pagedUsers" class="mat-elevation-z8">
     <!-- ID Column -->
     <ng-container matColumnDef="id">
@@ -64,7 +64,7 @@
 
   <mat-paginator [length]="users.length"
                  [pageSize]="pageSize"
-                 [pageSizeOptions]="[2, 4, 6]"
+                 [pageSizeOptions]="[3, 6, 9]"
                  [showFirstLastButtons]="true"
                  (page)="onPageChange($event)">
   </mat-paginator>

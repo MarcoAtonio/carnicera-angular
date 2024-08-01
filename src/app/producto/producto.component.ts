@@ -25,6 +25,10 @@ export class ProductoComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  onNoClick(): void {
+    this.router.navigate(['/dashboard/productos/listado']);
+  }
+
   restrictInput(event: KeyboardEvent, pattern: string): void {
     const inputChar = String.fromCharCode(event.charCode);
     if (!new RegExp(pattern).test(inputChar)) {
