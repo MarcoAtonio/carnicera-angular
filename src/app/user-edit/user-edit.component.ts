@@ -13,15 +13,16 @@ export class UserEditComponent {
 
   constructor(
     public dialogRef: MatDialogRef<UserEditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public user: any,
     private fb: FormBuilder
   ) {
     this.editUserForm = this.fb.group({
-      avatar: [data.avatar],
-      email: [data.email, [Validators.required, Validators.email]],
-      password: [data.password, [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
-      name: [data.name, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
-      role: [data.role, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]]
+      id: [user.id],
+      imagen: [user.imagen, Validators.required],
+      correo: [user.correo, [Validators.required, Validators.email]],
+      contra: [user.contra, [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
+      nombre: [user.nombre, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]],
+      rol: [user.rol, [Validators.required, Validators.pattern('^[a-zA-Z ]*$')]]
     });
   }
 
@@ -31,7 +32,10 @@ export class UserEditComponent {
 
   onSubmit(): void {
     if (this.editUserForm.valid) {
+      console.log('Formulario de edición válido, enviando datos:', this.editUserForm.value); // Agregar consola de depuración
       this.dialogRef.close(this.editUserForm.value);
+    } else {
+      console.error('Formulario de edición inválido'); // Agregar consola de depuración
     }
   }
 }

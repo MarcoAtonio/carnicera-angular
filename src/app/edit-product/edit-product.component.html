@@ -1,52 +1,66 @@
-<h1 mat-dialog-title>Editar Producto</h1>
-<div mat-dialog-content>
-  <form [formGroup]="editProductForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Nombre</mat-label>
-      <input matInput formControlName="name">
-      <mat-error *ngIf="editProductForm.get('name')?.hasError('required')">
-        El nombre es requerido
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Descripción</mat-label>
-      <input matInput formControlName="description">
-      <mat-error *ngIf="editProductForm.get('description')?.hasError('required')">
-        La descripción es requerida
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Precio</mat-label>
-      <input matInput formControlName="price">
-      <mat-error *ngIf="editProductForm.get('price')?.hasError('required')">
-        El precio es requerido
-      </mat-error>
-      <mat-error *ngIf="editProductForm.get('price')?.hasError('pattern')">
-        El precio debe ser un número válido
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Categoría</mat-label>
-      <input matInput formControlName="category">
-      <mat-error *ngIf="editProductForm.get('category')?.hasError('required')">
-        La categoría es requerida
-      </mat-error>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="form-field">
-      <mat-label>Imagen</mat-label>
-      <input matInput formControlName="image">
-      <mat-error *ngIf="editProductForm.get('image')?.hasError('required')">
-        La URL de la imagen es requerida
-      </mat-error>
-    </mat-form-field>
-
-    <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Cancelar</button>
-      <button mat-raised-button color="primary" type="submit">Guardar</button>
+<div class="edit-user-container">
+  <form [formGroup]="editProductForm" (ngSubmit)="onSubmit()" class="edit-user-form">
+    <h2>Editar Producto</h2>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre">
+        <mat-error *ngIf="editProductForm.get('nombre')?.hasError('required')">
+          El nombre es requerido
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Descripción</mat-label>
+        <input matInput formControlName="descripcion">
+        <mat-error *ngIf="editProductForm.get('descripcion')?.hasError('required')">
+          La descripción es requerida
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Precio</mat-label>
+        <input matInput formControlName="precio">
+        <mat-error *ngIf="editProductForm.get('precio')?.hasError('required')">
+          El precio es requerido
+        </mat-error>
+        <mat-error *ngIf="editProductForm.get('precio')?.hasError('pattern')">
+          El precio debe ser un número válido
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Categoría</mat-label>
+        <input matInput formControlName="categoria">
+        <mat-error *ngIf="editProductForm.get('categoria')?.hasError('required')">
+          La categoría es requerida
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Proveedor</mat-label>
+        <input matInput formControlName="proveedor">
+        <mat-error *ngIf="editProductForm.get('proveedor')?.hasError('required')">
+          El proveedor es requerido
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <mat-form-field appearance="outline" class="form-field">
+        <mat-label>Imagen</mat-label>
+        <input matInput formControlName="imagen">
+        <mat-error *ngIf="editProductForm.get('imagen')?.hasError('required')">
+          La URL de la imagen es requerida
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-row">
+      <button mat-raised-button color="secondary" type="button" (click)="onNoClick()">Cancelar</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="editProductForm.invalid">Actualizar</button>
     </div>
   </form>
 </div>

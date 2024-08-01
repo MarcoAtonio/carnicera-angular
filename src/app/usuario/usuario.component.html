@@ -59,8 +59,8 @@
   <div class="main-content">
     <header class="top-menu">
       <div class="profile-menu" [matMenuTriggerFor]="profileMenu">
-        <img src="https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png" class="profile-image" alt="Profile Image">
-        <span class="profile-name">Perfil</span>
+        <img [src]="user?.imagen || 'https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png'" class="profile-image" alt="Profile Image">
+        <span class="profile-name">{{ user?.nombre || 'Perfil' }}</span>
       </div>
       <button mat-button (click)="logout()">Cerrar Sesión</button>
     </header>

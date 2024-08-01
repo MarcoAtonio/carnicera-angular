@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
   styleUrls: ['./usuario.component.css']
 })
 export class UsuarioComponent {
+  user: any;
   menuVisible = true;
 
   constructor(private router: Router, public dialog: MatDialog) {}
@@ -19,15 +20,7 @@ export class UsuarioComponent {
   openProfileModal() {
     const dialogRef = this.dialog.open(ProfileModalDialog, {
       width: '400px',
-      data: {
-        id: '12345',
-        email: 'usuario@example.com',
-        password: '******',
-        name: 'Nombre del Usuario',
-        avatar: 'assets/profile.png',
-        creationAt: '2024-01-01',
-        updateAt: '2024-07-30'
-      }
+      data: this.user
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -36,7 +29,22 @@ export class UsuarioComponent {
   }
 
   logout() {
+    localStorage.removeItem('user');
     this.router.navigate(['/login']);
+  }
+
+  ngOnInit(): void {
+    this.getUserInfo();
+  }
+
+  getUserInfo(): void {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      this.user = JSON.parse(storedUser);
+    } else {
+      alert('No has iniciado sesion');
+      this.router.navigate(['/login']);
+    }
   }
 }
 
@@ -46,13 +54,13 @@ export class UsuarioComponent {
     <h1 mat-dialog-title>Información del Usuario</h1>
     <div mat-dialog-content>
       <div class="profile-modal-content">
-        <img [src]="data.avatar" alt="Avatar" class="profile-avatar">
-        <p><strong>ID:</strong> {{data.id}}</p>
-        <p><strong>Correo:</strong> {{data.email}}</p>
-        <p><strong>Nombre:</strong> {{data.name}}</p>
-        <p><strong>Rol:</strong> {{data.role}}</p>
-        <p><strong>Creado el:</strong> {{data.creationAt}}</p>
-        <p><strong>Editado el:</strong> {{data.updateAt}}</p>
+        <img [src]="user.imagen" alt="Avatar" class="profile-avatar">
+        <p><strong>ID:</strong> {{user.id}}</p>
+        <p><strong>Correo:</strong> {{user.correo}}</p>
+        <p><strong>Nombre:</strong> {{user.nombre}}</p>
+        <p><strong>Rol:</strong> {{user.rol}}</p>
+        <p><strong>Creado el:</strong> {{user.created_at}}</p>
+        <p><strong>Editado el:</strong> {{user.updated_at}}</p>
       </div>
     </div>
     <div mat-dialog-actions>
@@ -74,7 +82,7 @@ export class UsuarioComponent {
 export class ProfileModalDialog {
   constructor(
     public dialogRef: MatDialogRef<ProfileModalDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public user: any
   ) {}
 
   onNoClick(): void {

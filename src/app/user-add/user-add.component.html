@@ -4,11 +4,11 @@
     <div class="form-row">
       <mat-form-field appearance="outline" class="form-field">
         <mat-label>Avatar URL</mat-label>
-        <input matInput formControlName="avatar" (keypress)="restrictInput($event, avatarPattern)">
-        <mat-error *ngIf="addUserForm.get('avatar')?.hasError('required')">
+        <input matInput formControlName="imagen" (keypress)="restrictInput($event, avatarPattern)">
+        <mat-error *ngIf="addUserForm.get('imagen')?.hasError('required')">
           El URL del avatar es requerido
         </mat-error>
-        <mat-error *ngIf="addUserForm.get('avatar')?.hasError('pattern')">
+        <mat-error *ngIf="addUserForm.get('imagen')?.hasError('pattern')">
           Por favor ingrese un URL válido
         </mat-error>
       </mat-form-field>
@@ -16,11 +16,11 @@
     <div class="form-row">
       <mat-form-field appearance="outline" class="form-field">
         <mat-label>Email</mat-label>
-        <input matInput formControlName="email" required>
-        <mat-error *ngIf="addUserForm.get('email')?.hasError('required')">
+        <input matInput formControlName="correo" required>
+        <mat-error *ngIf="addUserForm.get('correo')?.hasError('required')">
           El email es requerido
         </mat-error>
-        <mat-error *ngIf="addUserForm.get('email')?.hasError('email')">
+        <mat-error *ngIf="addUserForm.get('correo')?.hasError('email')">
           Por favor ingrese un email válido
         </mat-error>
       </mat-form-field>
@@ -28,20 +28,20 @@
     <div class="form-row">
       <mat-form-field appearance="outline" class="form-field">
         <mat-label>Password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" required maxlength="8">
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="contra" required maxlength="8">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
           <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
-        <mat-error *ngIf="addUserForm.get('password')?.hasError('required')">
+        <mat-error *ngIf="addUserForm.get('contra')?.hasError('required')">
           La contraseña es requerida
         </mat-error>
-        <mat-error *ngIf="addUserForm.get('password')?.hasError('minlength')">
+        <mat-error *ngIf="addUserForm.get('contra')?.hasError('minlength')">
           La contraseña debe tener al menos 8 caracteres
         </mat-error>
-        <mat-error *ngIf="addUserForm.get('password')?.hasError('maxlength')">
+        <mat-error *ngIf="addUserForm.get('contra')?.hasError('maxlength')">
           La contraseña no puede tener más de 8 caracteres
         </mat-error>
-        <mat-error *ngIf="addUserForm.get('password')?.hasError('pattern')">
+        <mat-error *ngIf="addUserForm.get('contra')?.hasError('pattern')">
           La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial
         </mat-error>
       </mat-form-field>
@@ -49,11 +49,11 @@
     <div class="form-row">
       <mat-form-field appearance="outline" class="form-field">
         <mat-label>Nombre</mat-label>
-        <input matInput formControlName="name" required (keypress)="restrictInput($event, namePattern)">
-        <mat-error *ngIf="addUserForm.get('name')?.hasError('required')">
+        <input matInput formControlName="nombre" required (keypress)="restrictInput($event, namePattern)">
+        <mat-error *ngIf="addUserForm.get('nombre')?.hasError('required')">
           El nombre es requerido
         </mat-error>
-        <mat-error *ngIf="addUserForm.get('name')?.hasError('pattern')">
+        <mat-error *ngIf="addUserForm.get('nombre')?.hasError('pattern')">
           El nombre solo puede contener letras
         </mat-error>
       </mat-form-field>
@@ -61,11 +61,11 @@
     <div class="form-row">
       <mat-form-field appearance="outline" class="form-field">
         <mat-label>Rol</mat-label>
-        <input matInput formControlName="role" required (keypress)="restrictInput($event, namePattern)">
-        <mat-error *ngIf="addUserForm.get('role')?.hasError('required')">
+        <input matInput formControlName="rol" required (keypress)="restrictInput($event, namePattern)">
+        <mat-error *ngIf="addUserForm.get('rol')?.hasError('required')">
           El rol es requerido
         </mat-error>
-        <mat-error *ngIf="addUserForm.get('role')?.hasError('pattern')">
+        <mat-error *ngIf="addUserForm.get('rol')?.hasError('pattern')">
           El rol solo puede contener letras
         </mat-error>
       </mat-form-field>

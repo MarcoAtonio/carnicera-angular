@@ -12,16 +12,17 @@ export class EditProductComponent {
 
   constructor(
     public dialogRef: MatDialogRef<EditProductComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public product: any,
     private fb: FormBuilder
   ) {
     this.editProductForm = this.fb.group({
-      id: [data.id, Validators.required],
-      name: [data.name, Validators.required],
-      description: [data.description, Validators.required],
-      price: [data.price, [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
-      category: [data.category, Validators.required],
-      image: [data.image, Validators.required]
+      id: [product.id, Validators.required],
+      nombre: [product.nombre, Validators.required],
+      descripcion: [product.descripcion, Validators.required],
+      proveedor: [product.proveedor, Validators.required],
+      precio: [product.precio, [Validators.required, Validators.pattern('^[0-9]+(\.[0-9]{1,2})?$')]],
+      categoria: [product.categoria, Validators.required],
+      imagen: [product.imagen, Validators.required]
     });
   }
 
@@ -31,7 +32,10 @@ export class EditProductComponent {
 
   onSubmit(): void {
     if (this.editProductForm.valid) {
+      console.log('Formulario de edición válido, enviando datos:', this.editProductForm.value);
       this.dialogRef.close(this.editProductForm.value);
+    }else {
+      console.error('Formulario de edición inválido'); // Agregar consola de depuración
     }
   }
 }
